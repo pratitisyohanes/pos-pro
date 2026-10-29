@@ -1,0 +1,9 @@
+node_modules
+# Every .env file except the template
+.env
+.env.*
+*.env
+!.env.example
+coverage
+tests
+*.log

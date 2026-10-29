@@ -1,0 +1,9 @@
+node_modules
+dist
+# Every .env file except the template
+.env
+.env.*
+*.env
+!.env.example
+*.log
+.DS_Store

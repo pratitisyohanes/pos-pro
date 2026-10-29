@@ -1,0 +1,109 @@
+# Test, build and deploy the POS app to the VPS on every push to main
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deployments at the same time
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  backend-test:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - run: npm ci
+      - run: npm test
+
+  frontend-build:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      # Relative paths: Nginx forwards /api to pos-api and /auth to booking-api
+      - run: npm run build
+        env:
+          VITE_API_URL: /api/v1
+          VITE_AUTH_URL: /auth
+          VITE_BOOKING_URL: https://booking.pratitis.net
+      - uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist
+          retention-days: 7
+
+  deploy:
+    name: Deploy to VPS
+    needs: [backend-test, frontend-build]
+    # Pull requests only run tests and build; deployment happens after merge to main
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      APP_DIR: /var/www/pos
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend-dist
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${{ secrets.VPS_PORT || 22 }}" "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Upload backend and frontend
+        env:
+          SSH: ssh -i ~/.ssh/deploy_key -p ${{ secrets.VPS_PORT || 22 }}
+          TARGET: ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}
+        run: |
+          # .env on the server is kept; node_modules is reinstalled there
+          rsync -az --delete -e "$SSH" \
+            --exclude node_modules --exclude .env --exclude tests --exclude coverage \
+            backend/ "$TARGET:$APP_DIR/backend/"
+          rsync -az --delete -e "$SSH" frontend-dist/ "$TARGET:$APP_DIR/frontend/dist/"
+
+      - name: Install, migrate and restart backend
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "${{ secrets.VPS_PORT || 22 }}" \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" "bash -s" <<'EOF'
+          set -e
+          cd /var/www/pos/backend
+          npm ci --omit=dev --no-audit --no-fund
+          npx sequelize-cli db:migrate --env production
+          pm2 startOrReload ecosystem.config.js --update-env
+          pm2 save
+          EOF
+
+      - name: Health check
+        run: |
+          sleep 5
+          curl --fail --silent --show-error --retry 5 --retry-delay 3 "${{ secrets.APP_URL }}/api/v1/health"

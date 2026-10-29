@@ -1,0 +1,53 @@
+# POS stack only; booking-api (fin-pro) must already run on the host at port 5000
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: pos_db
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d pos_db"]
+      interval: 5s
+      retries: 10
+
+  api:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 5001
+      DATABASE_URL: postgresql://postgres:postgres@db:5432/pos_db
+      # Must match fin-pro booking-api values
+      JWT_ACCESS_SECRET: docker-access-secret-change-me
+      INTERNAL_API_KEY: docker-internal-key-change-me-0123456789
+      BOOKING_API_URL: http://host.docker.internal:5000/api/v1
+      CORS_ORIGIN: http://localhost:5174,http://localhost:8081
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "5001:5001"
+
+  web:
+    build:
+      context: ../frontend
+      args:
+        VITE_BOOKING_URL: http://localhost:8080
+    restart: unless-stopped
+    depends_on:
+      - api
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "8081:80"
+
+volumes:
+  pgdata:

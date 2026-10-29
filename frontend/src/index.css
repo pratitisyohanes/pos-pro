@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-slate-50 font-sans text-slate-800 antialiased;
+  }
+}
+
+/* Printing a receipt shows only the receipt, sized for 80 mm thermal paper */
+@media print {
+  @page {
+    size: 80mm auto;
+    margin: 4mm;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .receipt-print,
+  .receipt-print * {
+    visibility: visible;
+  }
+
+  .receipt-print {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 72mm;
+    border: 0 !important;
+    box-shadow: none !important;
+    font-size: 11px;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}
