@@ -11,18 +11,21 @@ export default function HomePage() {
 
   return (
     <div className="space-y-14">
-      <section className="overflow-hidden rounded-2xl bg-brand-900 px-6 py-12 text-white sm:px-10 sm:py-16">
-        <p className="text-sm font-semibold uppercase tracking-wider text-brand-200">Layer farm supplies</p>
-        <h1 className="mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">Battery cages, feed and poultry health products in one shop.</h1>
-        <p className="mt-4 max-w-xl text-brand-100">Check live stock, order online and pay at the counter, then book our field team to install your cages.</p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/products" className="rounded-lg bg-white px-5 py-2.5 font-semibold text-brand-900 hover:bg-brand-50">
-            Browse products
-          </Link>
-          <a href={BOOKING_URL} className="rounded-lg border border-white/30 px-5 py-2.5 font-semibold text-white hover:bg-white/10">
-            Book installation
-          </a>
+      <section className="grid items-center gap-8 overflow-hidden rounded-2xl bg-brand-900 px-6 py-12 text-white sm:px-10 sm:py-16 lg:grid-cols-2">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand-200">Layer farm supplies</p>
+          <h1 className="mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">Battery cages, feed and poultry health products in one shop.</h1>
+          <p className="mt-4 max-w-xl text-brand-100">Check live stock, order online and pay at the counter, then book our field team to install your cages.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link to="/products" className="rounded-lg bg-white px-5 py-2.5 font-semibold text-brand-900 hover:bg-brand-50">
+              Browse products
+            </Link>
+            <a href={BOOKING_URL} className="rounded-lg border border-white/30 px-5 py-2.5 font-semibold text-white hover:bg-white/10">
+              Book installation
+            </a>
+          </div>
         </div>
+        <img src="/hero-shop.svg" alt="Farm supply shop with cages, feed sacks and poultry health products" className="hidden w-full max-w-lg justify-self-end lg:block" />
       </section>
 
       {categories.data?.items?.length > 0 && (

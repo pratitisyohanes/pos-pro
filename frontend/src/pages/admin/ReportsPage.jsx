@@ -14,6 +14,7 @@ import { Select } from '../../components/ui/FormField';
 import { PageLoader } from '../../components/ui/Spinner';
 import { ErrorState } from '../../components/ui/States';
 import { downloadBlobResponse } from '../../utils/download';
+import { exportReportPdf } from '../../utils/reportPdf';
 import { getErrorMessage } from '../../utils/errors';
 import { formatDate, formatRupiah } from '../../utils/format';
 import { UNIT_LABEL } from '../../utils/constants';
@@ -52,6 +53,23 @@ export default function ReportsPage() {
     }
   };
 
+  const exportPdf = async () => {
+    setDownloading('pdf');
+    try {
+      await exportReportPdf({
+        summary: summary.data,
+        sales: sales.data,
+        topProducts: topProducts.data,
+        lowStock: lowStock.data,
+        groupBy: filters.groupBy,
+      });
+    } catch (error) {
+      toast.error(getErrorMessage(error));
+    } finally {
+      setDownloading(null);
+    }
+  };
+
   if (summary.error) return <ErrorState error={summary.error} onRetry={summary.refetch} />;
 
   return (
@@ -61,6 +79,9 @@ export default function ReportsPage() {
         description={summary.data ? `${formatDate(summary.data.range.start)} - ${formatDate(summary.data.range.end)}` : 'Sales analytics'}
         actions={
           <>
+            <Button isLoading={downloading === 'pdf'} disabled={!summary.data || !sales.data || !topProducts.data || !lowStock.data} onClick={exportPdf}>
+              Export PDF
+            </Button>
             <Button variant="secondary" isLoading={downloading === 'transactions'} onClick={() => exportCsv('transactions')}>
               Download sales CSV
             </Button>

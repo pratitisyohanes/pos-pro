@@ -94,7 +94,7 @@ export default function ProductFormModal({ isOpen, product, onClose }) {
         />
         <Select id="product-status" label="Status" options={toOptions(PRODUCT_STATUS)} error={errors.status?.message} {...register('status')} />
         <div className="sm:col-span-2">
-          <Input id="product-image" label="Image URL" placeholder="https://..." error={errors.imageUrl?.message} {...register('imageUrl')} />
+          <Input id="product-image" label="Image URL" placeholder="https://... or /products/name.svg" error={errors.imageUrl?.message} {...register('imageUrl')} />
         </div>
       </form>
     </Modal>

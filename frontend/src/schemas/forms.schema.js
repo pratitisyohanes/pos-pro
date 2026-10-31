@@ -25,7 +25,7 @@ export const productSchema = z.object({
   minStock: z.coerce.number().int('Minimum stock must be a whole number').min(0, 'Minimum stock cannot be negative').max(100000),
   installServiceId: z.union([z.literal(''), z.coerce.number().int().positive('Service id must be positive')]),
   status: z.enum(['ACTIVE', 'INACTIVE']),
-  imageUrl: z.string().trim().url('Image URL is not valid').or(z.literal('')),
+  imageUrl: z.string().trim().refine((value) => value === '' || value.startsWith('/') || /^https?:\/\//i.test(value), 'Image URL must start with https:// or /'),
 });
 
 export const stockSchema = z

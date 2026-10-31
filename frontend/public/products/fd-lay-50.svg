@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fef9c3"/><stop offset="1" stop-color="#e3f1cf"/></linearGradient></defs>
+<rect width="800" height="480" fill="url(#bg)"/>
+<circle cx="700" cy="80" r="42" fill="#fff6c9" opacity=".9"/>
+<path d="M0 410 Q200 380 400 405 T800 395 V480 H0Z" fill="#9ccc8a"/>
+<rect y="428" width="800" height="52" fill="#7fb06c"/>
+<ellipse cx="400" cy="436" rx="300" ry="12" fill="#000" opacity=".08"/>
+
+<g>
+<path d="M270 130 Q250 150 252 190 L246 400 Q246 418 266 420 H534 Q554 418 554 400 L548 190 Q550 150 530 130 Q470 112 400 120 Q330 112 270 130Z" fill="#fcd34d" stroke="#92400e" stroke-width="5" stroke-linejoin="round"/>
+<path d="M272 132 Q330 150 400 146 Q470 150 528 132" fill="none" stroke="#92400e" stroke-width="4"/>
+<path d="M280 150 H520" stroke="#92400e" stroke-width="3" stroke-dasharray="10 8" opacity=".6"/>
+<path d="M270 130 Q300 98 340 110 M530 130 Q500 98 460 110" fill="none" stroke="#92400e" stroke-width="5" stroke-linecap="round"/>
+<rect x="246" y="330" width="308" height="34" fill="#d97706" opacity=".9"/>
+<rect x="300" y="190" width="200" height="126" rx="14" fill="#fff" stroke="#92400e" stroke-width="4"/>
+<g transform="translate(400 258) scale(0.62 0.62)">
+<path d="M-26 -8 Q-52 -30 -44 -52 Q-30 -34 -18 -26Z" fill="#b45309" stroke="#78350f" stroke-width="2.5"/>
+<ellipse cx="0" cy="0" rx="32" ry="24" fill="#f59e0b" stroke="#92400e" stroke-width="3"/>
+<ellipse cx="-4" cy="4" rx="18" ry="11" fill="#d97706" stroke="#92400e" stroke-width="2"/>
+<circle cx="26" cy="-22" r="14" fill="#f59e0b" stroke="#92400e" stroke-width="3"/>
+<circle cx="22" cy="-38" r="5" fill="#ef4444"/><circle cx="29" cy="-37" r="5" fill="#ef4444"/><circle cx="26" cy="-40" r="5" fill="#ef4444"/>
+<path d="M38 -24 L50 -19 L38 -15Z" fill="#fb923c" stroke="#9a3412" stroke-width="2"/>
+<ellipse cx="36" cy="-10" rx="4" ry="6" fill="#ef4444"/>
+<circle cx="30" cy="-25" r="2.5" fill="#1f2937"/>
+<path d="M-6 22 V34 M8 22 V34" stroke="#ea580c" stroke-width="4" stroke-linecap="round"/>
+</g>
+<text x="400" y="296" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#92400e">LAYER FEED</text>
+<text x="400" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#fff">50 kg</text>
+</g>
+</svg>

@@ -4,6 +4,7 @@ import { useProduct } from '../../hooks/queries';
 import { useAddToCart } from '../../hooks/useAddToCart';
 import QuantityStepper from '../../components/QuantityStepper';
 import Badge from '../../components/ui/Badge';
+import ProductImage from '../../components/ProductImage';
 import Button from '../../components/ui/Button';
 import { PageLoader } from '../../components/ui/Spinner';
 import { ErrorState } from '../../components/ui/States';
@@ -30,21 +31,24 @@ export default function ProductDetailPage() {
       </Link>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
-        <section className="rounded-xl border border-slate-200 bg-white p-6">
-          <div className="flex flex-wrap items-center gap-2">
-            <Badge>{item.category?.name}</Badge>
-            <code className="text-xs text-slate-400">{item.sku}</code>
+        <section className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+          <ProductImage product={item} className="h-64 w-full sm:h-80" />
+          <div className="p-6">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge>{item.category?.name}</Badge>
+              <code className="text-xs text-slate-400">{item.sku}</code>
+            </div>
+            <h1 className="mt-3 text-2xl font-bold text-slate-900">{item.name}</h1>
+            <p className="mt-3 whitespace-pre-line text-slate-600">{item.description || 'No description yet.'}</p>
+            {item.installServiceId && (
+              <p className="mt-6 rounded-lg bg-brand-50 p-3 text-sm text-brand-900">
+                Our field team can install this for you.{' '}
+                <a href={bookingServiceUrl(item.installServiceId)} className="font-medium underline">
+                  Book installation
+                </a>
+              </p>
+            )}
           </div>
-          <h1 className="mt-3 text-2xl font-bold text-slate-900">{item.name}</h1>
-          <p className="mt-3 whitespace-pre-line text-slate-600">{item.description || 'No description yet.'}</p>
-          {item.installServiceId && (
-            <p className="mt-6 rounded-lg bg-brand-50 p-3 text-sm text-brand-900">
-              Our field team can install this for you.{' '}
-              <a href={bookingServiceUrl(item.installServiceId)} className="font-medium underline">
-                Book installation
-              </a>
-            </p>
-          )}
         </section>
 
         <aside className="h-fit space-y-4 rounded-xl border border-slate-200 bg-white p-6">
