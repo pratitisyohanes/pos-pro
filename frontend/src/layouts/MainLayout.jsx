@@ -11,7 +11,7 @@ export default function MainLayout() {
       </main>
       <footer className="no-print border-t border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:justify-between">
-          <p>&copy; {new Date().getFullYear()} KandangMart. Supplies for layer farms.</p>
+          <p>&copy; {new Date().getFullYear()} ELEFEZ FARM. Three Brothers, One Champion Quality.</p>
           <p>Final Project Full Stack Web Development</p>
         </div>
       </footer>

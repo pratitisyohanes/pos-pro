@@ -15,7 +15,7 @@ export default function Receipt({ transaction }) {
     <div className="space-y-4">
       <article className="receipt-print mx-auto w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 font-mono text-sm">
         <header className="text-center">
-          <p className="font-sans text-lg font-bold">KandangMart</p>
+          <p className="font-sans text-lg font-bold">ELEFEZ FARM</p>
           <p className="text-xs text-slate-500">Layer farm supplies</p>
           <p className="mt-2 font-semibold">{transaction.invoiceNo}</p>
           <p className="text-xs text-slate-500">{formatDateTime(transaction.paidAt || transaction.createdAt)}</p>
