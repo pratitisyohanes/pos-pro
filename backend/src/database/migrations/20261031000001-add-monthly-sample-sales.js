@@ -42,10 +42,8 @@ const roundUpCash = (total) => {
 };
 
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    // Demo data only; skipped (but still recorded as run) on the production server
-    if (process.env.NODE_ENV === 'production') return;
-
+  // Also used by 20261101000002, which adds the same sales on the production server
+  async insertSampleSales(queryInterface, Sequelize) {
     const { sequelize } = queryInterface;
     const [{ count }] = await sequelize.query(`SELECT COUNT(*)::int AS count FROM transactions WHERE invoice_no ~ '${INVOICE_PATTERN}'`, { type: Sequelize.QueryTypes.SELECT });
     if (count > 0) return;
@@ -152,6 +150,12 @@ module.exports = {
         }
       }
     });
+  },
+
+  async up(queryInterface, Sequelize) {
+    // Skipped (but still recorded as run) on the production server
+    if (process.env.NODE_ENV === 'production') return;
+    await module.exports.insertSampleSales(queryInterface, Sequelize);
   },
 
   async down(queryInterface) {
