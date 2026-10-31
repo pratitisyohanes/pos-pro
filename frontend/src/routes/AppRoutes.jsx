@@ -8,6 +8,7 @@ import HomePage from '../pages/public/HomePage';
 import ProductsPage from '../pages/public/ProductsPage';
 import ProductDetailPage from '../pages/public/ProductDetailPage';
 import LoginPage from '../pages/public/LoginPage';
+import AuthCallbackPage from '../pages/public/AuthCallbackPage';
 import { ForbiddenPage, NotFoundPage } from '../pages/public/StatusPages';
 import CartPage from '../pages/user/CartPage';
 import MyOrdersPage from '../pages/user/MyOrdersPage';
@@ -36,6 +37,8 @@ export default function AppRoutes() {
           <Route element={<GuestRoute />}>
             <Route path="login" element={<LoginPage />} />
           </Route>
+          {/* Outside GuestRoute: the session is created on this page */}
+          <Route path="login/callback" element={<AuthCallbackPage />} />
 
           <Route element={<ProtectedRoute roles={['USER']} />}>
             <Route path="cart" element={<CartPage />} />

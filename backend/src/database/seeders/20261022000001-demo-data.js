@@ -9,8 +9,8 @@ const USERS = {
   siti: { id: '0a000000-0000-4000-8000-000000000003', name: 'Siti Rahma' },
 };
 
-// Service ids from the fin-pro seeder: 2 = cage installation (500 birds), 5 = nipple drinker setup
-const INSTALL_CAGE = 2;
+// Service ids from the fin-pro seeder: 8 = cage installation (up to 50 birds), 5 = nipple drinker setup
+const INSTALL_CAGE = 8;
 const INSTALL_DRINKER = 5;
 
 const categories = ['Cages', 'Equipment', 'Feed', 'Health'];
