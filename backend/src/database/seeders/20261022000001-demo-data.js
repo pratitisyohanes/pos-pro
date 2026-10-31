@@ -53,7 +53,7 @@ const seedCatalog = async (admin) => {
 
   const bySku = {};
   for (const { category, stock, ...data } of products) {
-    const product = await Product.create({ ...data, categoryId: categoryByName[category].id, stock });
+    const product = await Product.create({ ...data, imageUrl: `/products/${data.sku.toLowerCase()}.svg`, categoryId: categoryByName[category].id, stock });
     await StockMovement.create({ productId: product.id, type: 'RESTOCK', quantity: stock, stockAfter: stock, actorId: admin.id, actorName: admin.name, note: 'Opening stock' });
     bySku[product.sku] = product;
   }

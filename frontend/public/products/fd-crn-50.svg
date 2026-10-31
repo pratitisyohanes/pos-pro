@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="800" height="480">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fef9c3"/><stop offset="1" stop-color="#e3f1cf"/></linearGradient></defs>
+<rect width="800" height="480" fill="url(#bg)"/>
+<circle cx="700" cy="80" r="42" fill="#fff6c9" opacity=".9"/>
+<path d="M0 410 Q200 380 400 405 T800 395 V480 H0Z" fill="#9ccc8a"/>
+<rect y="428" width="800" height="52" fill="#7fb06c"/>
+<ellipse cx="400" cy="436" rx="300" ry="12" fill="#000" opacity=".08"/>
+
+<g>
+<path d="M270 130 Q250 150 252 190 L246 400 Q246 418 266 420 H534 Q554 418 554 400 L548 190 Q550 150 530 130 Q470 112 400 120 Q330 112 270 130Z" fill="#fde68a" stroke="#854d0e" stroke-width="5" stroke-linejoin="round"/>
+<path d="M272 132 Q330 150 400 146 Q470 150 528 132" fill="none" stroke="#854d0e" stroke-width="4"/>
+<path d="M280 150 H520" stroke="#854d0e" stroke-width="3" stroke-dasharray="10 8" opacity=".6"/>
+<path d="M270 130 Q300 98 340 110 M530 130 Q500 98 460 110" fill="none" stroke="#854d0e" stroke-width="5" stroke-linecap="round"/>
+<rect x="246" y="330" width="308" height="34" fill="#ca8a04" opacity=".9"/>
+<rect x="300" y="190" width="200" height="126" rx="14" fill="#fff" stroke="#854d0e" stroke-width="4"/>
+<g transform="translate(400 238) scale(.72) translate(-400 -244)"><path d="M400 205 C374 222 374 268 400 284 C426 268 426 222 400 205Z" fill="#facc15" stroke="#854d0e" stroke-width="4"/><path d="M400 210 V282 M384 232 H416 M384 252 H416" stroke="#a16207" stroke-width="3"/><path d="M400 284 C380 276 366 256 372 236 M400 284 C420 276 434 256 428 236" fill="none" stroke="#65a30d" stroke-width="6" stroke-linecap="round"/></g>
+<text x="400" y="296" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700" fill="#854d0e">GROUND CORN</text>
+<text x="400" y="355" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#fff">50 kg</text>
+</g>
+<g><path d="M600 372 C574 392 574 428 600 440 C626 428 626 392 600 372Z" fill="#facc15" stroke="#854d0e" stroke-width="4"/><path d="M600 376 V438 M586 394 H614 M586 410 H614" stroke="#a16207" stroke-width="3"/></g>
+<g><path d="M650 392 C628 408 628 436 650 446 C672 436 672 408 650 392Z" fill="#fbbf24" stroke="#854d0e" stroke-width="4"/><path d="M650 396 V444 M638 410 H662 M638 424 H662" stroke="#a16207" stroke-width="3"/></g>
+</svg>

@@ -105,7 +105,7 @@ const spec = {
           minStock: { type: 'integer' },
           installServiceId: { type: 'integer', nullable: true, description: 'Service id in booking-api' },
           status: { type: 'string', enum: ['ACTIVE', 'INACTIVE'] },
-          imageUrl: { type: 'string', format: 'uri' },
+          imageUrl: { type: 'string', description: 'https:// URL or site path such as /products/cg-bat-1d.svg' },
         },
       },
       StockInput: {

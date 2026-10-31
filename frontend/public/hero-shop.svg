@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420">
+<defs>
+<radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fde68a" stop-opacity=".55"/><stop offset="1" stop-color="#fde68a" stop-opacity="0"/></radialGradient>
+<clipPath id="win"><rect x="70" y="160" width="500" height="190" rx="6"/></clipPath>
+</defs>
+<circle cx="545" cy="75" r="70" fill="url(#glow)"/><circle cx="545" cy="75" r="30" fill="#fde68a"/>
+
+<!-- shop front -->
+<rect x="40" y="120" width="560" height="260" rx="10" fill="#7a4f27" stroke="#b9854a" stroke-width="3"/>
+<rect x="70" y="160" width="500" height="190" rx="6" fill="#3a230c" stroke="#d9a566" stroke-width="4"/>
+
+<!-- awning -->
+<g>
+<path d="M30 72 H610 L626 128 H14Z" fill="#fff7ed"/>
+<path d="M30 72 H94 L86 128 H14Z M158 72 H222 L222 128 H150Z M286 72 H350 L358 128 H286Z M414 72 H478 L494 128 H422Z M542 72 H606 L626 128 H566Z" fill="#f59e0b"/>
+<path d="M14 128 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 q25 26 50 0 V128Z" fill="#fff7ed" stroke="#d6a44a" stroke-width="2"/>
+<path d="M30 72 H610 L626 128 H14Z" fill="none" stroke="#b45309" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<rect x="210" y="132" width="220" height="24" rx="6" fill="#fff7ed" stroke="#b45309" stroke-width="2.5" display="none"/>
+
+<g clip-path="url(#win)">
+<!-- shelf planks -->
+<rect x="70" y="250" width="500" height="10" fill="#b9854a" stroke="#6b4423" stroke-width="2"/>
+<rect x="70" y="335" width="500" height="10" fill="#b9854a" stroke="#6b4423" stroke-width="2"/>
+
+<!-- upper shelf: yellow layer feed sack -->
+<path d="M95 250 V190 Q95 184 101 184 H159 Q165 184 165 190 V250Z" fill="#fcd34d" stroke="#92400e" stroke-width="3"/>
+<path d="M95 188 Q130 198 165 188" fill="none" stroke="#92400e" stroke-width="2.5"/>
+<rect x="108" y="208" width="44" height="28" rx="4" fill="#fff" stroke="#92400e" stroke-width="2"/>
+<ellipse cx="130" cy="224" rx="9" ry="7" fill="#f59e0b" stroke="#92400e" stroke-width="1.5"/><circle cx="138" cy="215" r="4.5" fill="#f59e0b" stroke="#92400e" stroke-width="1.5"/><path d="M142 214 l5 2 l-5 2z" fill="#fb923c"/>
+<!-- green concentrate sack -->
+<path d="M180 250 V190 Q180 184 186 184 H244 Q250 184 250 190 V250Z" fill="#86efac" stroke="#14532d" stroke-width="3"/>
+<path d="M180 188 Q215 198 250 188" fill="none" stroke="#14532d" stroke-width="2.5"/>
+<rect x="193" y="208" width="44" height="28" rx="4" fill="#fff" stroke="#14532d" stroke-width="2"/>
+<circle cx="215" cy="222" r="9" fill="#bbf7d0" stroke="#14532d" stroke-width="2"/><path d="M210 222 l4 4 l7 -8" fill="none" stroke="#15803d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<!-- vitamin bottle -->
+<rect x="283" y="180" width="24" height="10" rx="3" fill="#f97316" stroke="#1f2937" stroke-width="2.5"/>
+<path d="M286 190 H304 V198 Q318 204 318 218 V246 Q318 250 314 250 H276 Q272 250 272 246 V218 Q272 204 286 198Z" fill="#fde68a" stroke="#1f2937" stroke-width="2.5"/>
+<rect x="274" y="214" width="42" height="26" fill="#fff" stroke="#1f2937" stroke-width="2"/><path d="M293 218 h4 v5 h5 v4 h-5 v5 h-4 v-5 h-5 v-4 h5z" fill="#f97316"/>
+<!-- vaccine vial -->
+<rect x="338" y="186" width="26" height="8" rx="2" fill="#94a3b8" stroke="#1f2937" stroke-width="2.5"/>
+<path d="M341 194 H361 V200 Q371 204 371 214 V246 Q371 250 367 250 H335 Q331 250 331 246 V214 Q331 204 341 200Z" fill="#dbeafe" stroke="#1f2937" stroke-width="2.5"/>
+<rect x="333" y="216" width="36" height="24" fill="#fff" stroke="#1f2937" stroke-width="2"/><rect x="333" y="216" width="36" height="8" fill="#2563eb"/>
+<!-- disinfectant jug -->
+<rect x="402" y="182" width="22" height="10" rx="3" fill="#0d9488" stroke="#064e3b" stroke-width="2.5"/>
+<path d="M398 192 H430 L442 198 V246 Q442 250 438 250 H398 Q394 250 394 246 V198Z" fill="#a7f3d0" stroke="#064e3b" stroke-width="2.5"/>
+<path d="M442 204 Q458 204 458 222 Q458 238 442 238" fill="none" stroke="#064e3b" stroke-width="4" stroke-linecap="round"/>
+<rect x="400" y="212" width="36" height="28" rx="3" fill="#fff" stroke="#064e3b" stroke-width="2"/><path d="M418 217 l9 3 v7 q0 6 -9 10 q-9 -4 -9 -10 v-7z" fill="#0d9488"/>
+<!-- stacked egg trays -->
+<path d="M482 250 H552 L558 238 H476Z" fill="#e0b97d" stroke="#8b5e1a" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M482 238 H552 L558 226 H476Z" fill="#d9a85f" stroke="#8b5e1a" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M482 226 H552 L558 214 H476Z" fill="#e0b97d" stroke="#8b5e1a" stroke-width="2.5" stroke-linejoin="round"/>
+<g fill="#fff7ed" stroke="#d6b88f" stroke-width="1.5"><ellipse cx="488" cy="208" rx="5" ry="7"/><ellipse cx="500" cy="208" rx="5" ry="7"/><ellipse cx="512" cy="208" rx="5" ry="7"/><ellipse cx="524" cy="208" rx="5" ry="7"/><ellipse cx="536" cy="208" rx="5" ry="7"/><ellipse cx="548" cy="208" rx="5" ry="7"/></g>
+
+<!-- lower shelf: mini battery cage with hens -->
+<g>
+<g transform="translate(130 322) scale(.5)"><ellipse cx="0" cy="0" rx="32" ry="24" fill="#f59e0b" stroke="#92400e" stroke-width="5"/><circle cx="26" cy="-22" r="14" fill="#f59e0b" stroke="#92400e" stroke-width="5"/><circle cx="26" cy="-38" r="6" fill="#ef4444"/><path d="M38 -24 L50 -19 L38 -15Z" fill="#fb923c" stroke="#9a3412" stroke-width="3"/></g>
+<g transform="translate(220 322) scale(.5)"><ellipse cx="0" cy="0" rx="32" ry="24" fill="#f59e0b" stroke="#92400e" stroke-width="5"/><circle cx="26" cy="-22" r="14" fill="#f59e0b" stroke="#92400e" stroke-width="5"/><circle cx="26" cy="-38" r="6" fill="#ef4444"/><path d="M38 -24 L50 -19 L38 -15Z" fill="#fb923c" stroke="#9a3412" stroke-width="3"/></g>
+<rect x="92" y="272" width="170" height="63" rx="4" fill="#fff" opacity=".12"/>
+<path d="M92 284 H262 M92 296 H262 M92 308 H262 M92 320 H262" stroke="#cbd5e1" stroke-width="1.5" opacity=".8"/>
+<path d="M104 272 V335 M118 272 V335 M132 272 V335 M146 272 V335 M160 272 V335 M174 272 V335 M188 272 V335 M202 272 V335 M216 272 V335 M230 272 V335 M244 272 V335" stroke="#cbd5e1" stroke-width="1.5" opacity=".8"/>
+<path d="M177 270 V337" stroke="#e2e8f0" stroke-width="5"/>
+<rect x="92" y="272" width="170" height="63" rx="4" fill="none" stroke="#e2e8f0" stroke-width="5"/>
+</g>
+<!-- gutter feeder -->
+<path d="M285 296 H395 L385 330 H295Z" fill="#cbd5e1" stroke="#e2e8f0" stroke-width="3" stroke-linejoin="round"/>
+<path d="M290 312 H390 L387 324 H293Z" fill="#e8c26a" stroke="#b7791f" stroke-width="2"/>
+<g fill="#fbbf24"><circle cx="305" cy="308" r="3.5"/><circle cx="320" cy="306" r="3.5"/><circle cx="335" cy="308" r="3.5"/><circle cx="350" cy="306" r="3.5"/><circle cx="365" cy="308" r="3.5"/><circle cx="380" cy="306" r="3.5"/></g>
+<!-- corn sack -->
+<path d="M420 335 V280 Q420 274 426 274 H484 Q490 274 490 280 V335Z" fill="#fde68a" stroke="#854d0e" stroke-width="3"/>
+<path d="M420 278 Q455 288 490 278" fill="none" stroke="#854d0e" stroke-width="2.5"/>
+<rect x="433" y="296" width="44" height="28" rx="4" fill="#fff" stroke="#854d0e" stroke-width="2"/>
+<path d="M455 300 C446 306 446 318 455 322 C464 318 464 306 455 300Z" fill="#facc15" stroke="#854d0e" stroke-width="2"/>
+<!-- pressure regulator -->
+<rect x="508" y="308" width="62" height="10" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>
+<rect x="520" y="296" width="38" height="34" rx="7" fill="#0ea5e9" stroke="#0369a1" stroke-width="3"/>
+<rect x="532" y="282" width="14" height="16" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="2"/><rect x="527" y="276" width="24" height="9" rx="3" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+<circle cx="539" cy="313" r="9" fill="#f8fafc" stroke="#0369a1" stroke-width="2"/><path d="M539 313 l5 -5" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+</g>
+
+<!-- window light streak -->
+<path d="M80 168 L130 168 L96 346 L80 346Z" fill="#fff" opacity=".07"/>
+
+<!-- counter and ground -->
+<rect x="40" y="348" width="560" height="32" rx="4" fill="#9a6a3a" stroke="#d9a566" stroke-width="3"/>
+<rect x="60" y="356" width="520" height="4" fill="#d9a566" opacity=".5"/>
+<rect x="10" y="380" width="620" height="32" rx="16" fill="#5c8f4a"/>
+<path d="M26 384 H614" stroke="#7fb06c" stroke-width="4" stroke-linecap="round"/>
+</svg>

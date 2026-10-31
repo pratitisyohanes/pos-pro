@@ -18,7 +18,7 @@ const productFields = {
   minStock: z.coerce.number().int().min(0, 'Minimum stock cannot be negative').max(100000),
   installServiceId: z.coerce.number().int().positive().nullable().optional(),
   status: z.enum(['ACTIVE', 'INACTIVE']).optional(),
-  imageUrl: z.string().trim().url('Image URL is not valid').or(z.literal('')).optional(),
+  imageUrl: z.string().trim().refine((value) => value === '' || value.startsWith('/') || /^https?:\/\//i.test(value), 'Image URL must start with https:// or /').optional(),
 };
 
 const listProductsSchema = z.object({
