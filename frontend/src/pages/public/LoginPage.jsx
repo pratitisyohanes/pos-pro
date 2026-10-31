@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -8,44 +9,53 @@ import { useAuthStore } from '../../store/authStore';
 import { loginSchema } from '../../schemas/forms.schema';
 import { applyFieldErrors } from '../../utils/errors';
 import { BOOKING_URL } from '../../utils/config';
+import { isSsoEnabled } from '../../utils/oidc';
 import AuthCard from '../../components/AuthCard';
+import MfaStep from '../../components/MfaStep';
+import SsoLogin from '../../components/SsoLogin';
 import Button from '../../components/ui/Button';
 import { Input } from '../../components/ui/FormField';
 
-const DEMO_ACCOUNTS = [
-  { label: 'Admin (cashier)', email: 'admin@booking.com', password: 'Admin12345' },
-  { label: 'Customer', email: 'budi@example.com', password: 'User12345' },
-];
-
+// With single sign-on the password is typed on the KandangID page, not here
 export default function LoginPage() {
+  return isSsoEnabled ? <SsoLogin /> : <PasswordLoginPage />;
+}
+
+function PasswordLoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const setSession = useAuthStore((state) => state.setSession);
+  // Set when the password was right but a second step (code or authenticator setup) is still needed
+  const [challenge, setChallenge] = useState(null);
 
   const {
     register,
     handleSubmit,
-    setValue,
     setError,
     formState: { errors },
   } = useForm({ resolver: zodResolver(loginSchema), defaultValues: { email: '', password: '' } });
 
+  const completeLogin = (session) => {
+    setSession(session);
+    toast.success(`Welcome, ${session.user.name}`);
+    // Return to the page that required login, otherwise go to the role home page
+    const fallback = session.user.role === 'ADMIN' ? '/admin/cashier' : '/products';
+    navigate(location.state?.from?.pathname || fallback, { replace: true });
+  };
+
   const login = useApiMutation(authApi.login, {
-    onSuccess: (session) => {
-      setSession(session);
-      toast.success(`Welcome, ${session.user.name}`);
-      // Return to the page that required login, otherwise go to the role home page
-      const fallback = session.user.role === 'ADMIN' ? '/admin/cashier' : '/products';
-      navigate(location.state?.from?.pathname || fallback, { replace: true });
-    },
+    onSuccess: (result) => (result.mfaToken ? setChallenge(result) : completeLogin(result)),
   });
 
   const onSubmit = (values) => login.mutate(values, { onError: (error) => applyFieldErrors(error, setError) });
 
-  const fillDemo = (account) => {
-    setValue('email', account.email);
-    setValue('password', account.password);
-  };
+  if (challenge) {
+    return (
+      <AuthCard title={challenge.requiresMfaSetup ? 'Set up two-factor login' : 'Two-factor verification'} subtitle="One more step before opening the cashier.">
+        <MfaStep challenge={challenge} onSession={completeLogin} onCancel={() => setChallenge(null)} />
+      </AuthCard>
+    );
+  }
 
   return (
     <AuthCard
@@ -67,17 +77,6 @@ export default function LoginPage() {
           Log in
         </Button>
       </form>
-
-      <div className="mt-6 rounded-lg bg-slate-50 p-3 text-xs text-slate-500">
-        <p className="font-medium text-slate-600">Demo accounts</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {DEMO_ACCOUNTS.map((account) => (
-            <button key={account.email} type="button" onClick={() => fillDemo(account)} className="rounded border border-slate-200 bg-white px-2 py-1 hover:border-brand-500">
-              {account.label}: {account.email}
-            </button>
-          ))}
-        </div>
-      </div>
     </AuthCard>
   );
 }

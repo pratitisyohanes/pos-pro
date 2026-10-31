@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useAuthStore } from '../store/authStore';
 import { API_URL, AUTH_URL } from '../utils/config';
+import { isSsoEnabled, refreshWithSso } from '../utils/oidc';
 
 // pos-api for products and sales, booking-api (through /auth) for login and tokens
 export const api = axios.create({ baseURL: API_URL });
@@ -21,11 +22,12 @@ export const refreshSession = () => {
   if (!refreshToken) return Promise.reject(new Error('No refresh token'));
 
   if (!refreshPromise) {
-    refreshPromise = refreshClient
-      .post('/refresh', { refreshToken })
-      .then((response) => {
-        setSession(getData(response));
-        return getData(response).accessToken;
+    // With single sign-on the token pair comes from KandangID, otherwise from booking-api through /auth
+    const request = isSsoEnabled ? refreshWithSso(refreshToken) : refreshClient.post('/refresh', { refreshToken }).then(getData);
+    refreshPromise = request
+      .then((session) => {
+        setSession(session);
+        return session.accessToken;
       })
       .finally(() => {
         refreshPromise = null;

@@ -54,7 +54,7 @@ cp .env.example .env
 npm run dev              # http://localhost:5174
 ```
 
-Demo accounts (from the fin-pro seeder): `admin@booking.com / Admin12345`, `budi@example.com / User12345`.
+There are no built-in demo logins on the login page. Create an account on the register page (or on the KandangID page when single sign-on is on).
 
 ## Project Structure
 

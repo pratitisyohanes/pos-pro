@@ -9,5 +9,8 @@ coverage/
 *.log
 .DS_Store
 
+# SSH deploy keys never belong in the repository (the workflow reads the key from GitHub Secrets)
+deploy_key*
+
 # Local notes and design docs, never pushed
 rules/
