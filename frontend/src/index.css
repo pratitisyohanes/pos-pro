@@ -12,11 +12,23 @@
   }
 }
 
-/* Printing a receipt shows only the receipt, sized for 80 mm thermal paper */
+/* Printing a receipt shows only the receipt, stretched to the full paper width.
+   Text and padding scale with the page, so it suits a thermal roll, A4 or a phone PDF.
+   Zero page margin also drops the browser's own date and URL header and footer. */
 @media print {
   @page {
-    size: 80mm auto;
-    margin: 4mm;
+    margin: 0;
+  }
+
+  /* The print viewport is as wide as the paper, so rem-based text scales with it:
+     about 11px on an 80 mm roll, 20px on A4 or a phone PDF */
+  html {
+    font-size: clamp(11px, 2.6vw, 20px);
+  }
+
+  html,
+  body {
+    background: #fff !important;
   }
 
   body * {
@@ -31,10 +43,32 @@
   .receipt-print {
     position: absolute;
     inset: 0 auto auto 0;
-    width: 72mm;
+    width: 100%;
+    max-width: none;
+    margin: 0 !important;
+    padding: clamp(4mm, 7vw, 20mm) !important;
     border: 0 !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
-    font-size: 11px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #000;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .receipt-print .text-slate-500,
+  .receipt-print .text-slate-600 {
+    color: #333 !important;
+  }
+
+  .receipt-print header p:first-child {
+    font-size: 1.6rem;
+  }
+
+  .receipt-print .border-slate-300,
+  .receipt-print .divide-slate-200 > * {
+    border-color: #000 !important;
   }
 
   .no-print {
